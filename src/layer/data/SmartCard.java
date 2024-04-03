@@ -3,26 +3,32 @@ package layer.data;
 import java.util.Date;
 
 public class SmartCard {
-    private final Name name;
+    private final Name studentName;
     private final Date dateOfBirth;
+    private final StudentID studentID;
     private final SmartCardNumber smartCardNumber;
     private final Date dateOfIssue;
     private Date expiryDate;
 
-    public SmartCard(Name name, Date dateOfBirth, SmartCardNumber smartCardNumber, Date dateOfIssue, Date expiryDate) {
-        this.name = name;
+    public SmartCard(Name studentName, Date dateOfBirth, StudentID studentID, SmartCardNumber smartCardNumber, Date dateOfIssue) {
+        this.studentName = studentName;
         this.dateOfBirth = dateOfBirth;
+        this.studentID = studentID;
         this.smartCardNumber = smartCardNumber;
         this.dateOfIssue = dateOfIssue;
-        this.expiryDate = expiryDate;
+        setExpiryDate();
     }
 
     public String getName() {
-        return this.name.toString();
+        return this.studentName.toString();
     }
 
     public Date getDateOfBirth() {
         return this.dateOfBirth;
+    }
+
+    public StudentID getStudentID() {
+        return this.studentID;
     }
 
     public String getSmartCardNumber() {
@@ -37,8 +43,23 @@ public class SmartCard {
         return this.expiryDate;
     }
 
-    private void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
+    private void setExpiryDate() {
+        // Assuming UG prefix is 'U', PGT prefix is 'P', and PGR prefix is 'R'
+        int yearsToAdd;
+        switch (studentID.getFirstLetter()) {
+            case "U":
+                yearsToAdd = 4;
+                break;
+            case "P":
+                yearsToAdd = 2;
+                break;
+            case "R":
+                yearsToAdd = 5;
+                break;
+            default:
+                yearsToAdd = 0;
+        }
+        expiryDate = new Date(dateOfIssue.getTime() + yearsToAdd * 365L * 24 * 60 * 60 * 1000);
     }
 
     public String toString() {

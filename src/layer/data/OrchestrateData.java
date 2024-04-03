@@ -16,8 +16,8 @@ public class OrchestrateData {
 //        System.out.println(name1);
 //        System.out.println(name2);
 
-        StudentID studentId1 = new StudentID("a", 1234);
-        StudentID studentId2 = new StudentID("a", 1234);
+        StudentID studentId1 = new StudentID("U", 1234);
+        StudentID studentId2 = new StudentID("U", 1234);
 //        System.out.println(studentId1);
 //        System.out.println(studentId2);
 //        System.out.println(studentId1.hashCode());
@@ -36,7 +36,10 @@ public class OrchestrateData {
         calendar1.setTime(dateOfIssue1);
         calendar1.add(Calendar.YEAR, 4);
         Date expiryDate1 = calendar1.getTime();
-        SmartCard smartCard1 = new SmartCard(name1, dateOfBirth1, smartCardNumber1, dateOfIssue1, expiryDate1);
+        SmartCard smartCard1 = new SmartCard(name1, dateOfBirth1, studentId1, smartCardNumber1, dateOfIssue1);
         System.out.println(smartCard1);
+
+//        String uniqueStudentId = (studentId1.equals(studentId2)) ? "identical student IDs" : "unique student IDs";
+//        System.out.println(uniqueStudentId);
     }
 }
