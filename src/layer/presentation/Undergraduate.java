@@ -1,17 +1,15 @@
-package layer.data.presentation;
-
-import layer.data.Module;
+package layer.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
 import layer.data.Module;
 
-public class PostgraduateTaught implements Student {
+public class Undergraduate implements Student {
     private final String ID;
     private final List<Module> registeredModules;
-    private static final int REQUIRED_CREDITS = 180;
+    private static final int REQUIRED_CREDITS = 120;
 
-    public PostgraduateTaught(String ID) {
+    public Undergraduate(String ID) {
         this.ID = ID;
         this.registeredModules = new ArrayList<>();
     }
@@ -23,7 +21,7 @@ public class PostgraduateTaught implements Student {
 
     @Override
     public String getType() {
-        return "PGT";
+        return "UG";
     }
 
     @Override
@@ -39,7 +37,7 @@ public class PostgraduateTaught implements Student {
 
     @Override
     public String getSupervisor() {
-        return ""; // Postgraduate taught students do not have supervisors
+        return ""; // Undergraduates do not have supervisors
     }
 
     public void registerModule(Module module) {
